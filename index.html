@@ -3,63 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super Hero App - Home</title>
+    <meta name="description" content="Discover Marvel's Mightiest Heroes - An interactive superhero database">
+    <meta name="theme-color" content="#ed1d24">
+    <title>Marvel Heroes - Earth's Mightiest Heroes</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html" class="nav-link active">Home</a></li>
-            <li><a href="about.html" class="nav-link">About</a></li>
-            <li><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon sun">☀️</span>
+        <span class="theme-icon moon">🌙</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="marvel-logo">MARVEL</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#heroes" class="nav-link">Heroes</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="mobile-menu" id="mobileMenu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </nav>
 
-    <main>
-        <div class="hero-section">
-            <h1>🦸‍♂️ Super Hero App</h1>
-            <p>Discover the incredible stories of Earth's Mightiest Heroes. Click on any hero to learn more about their powers, origins, and adventures!</p>
+    <main id="main-content">
+        <!-- Home Section -->
+        <section id="home" class="hero-section active-section">
+            <div class="hero-background">
+                <div class="hero-pattern"></div>
+            </div>
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="marvel-title">
+                    <span class="title-main">EARTH'S MIGHTIEST</span>
+                    <span class="title-sub">HEROES</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Discover the incredible stories, powers, and origins of Marvel's legendary Avengers
+                </p>
+                <div class="hero-cta">
+                    <a href="#heroes" class="btn btn-primary">
+                        <span>Explore Heroes</span>
+                        <span class="btn-icon">→</span>
+                    </a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll to discover</span>
+                <div class="scroll-arrow">↓</div>
+            </div>
+        </section>
+
+        <!-- Heroes Section -->
+        <section id="heroes" class="section heroes-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-tag">The Avengers</span>
+                    <h2 class="section-title">Meet the Heroes</h2>
+                    <p class="section-subtitle">
+                        Click on any hero to learn more about their powers, origins, and legendary adventures
+                    </p>
+                </div>
+
+                <div class="heroes-grid" id="heroesGrid">
+                    <!-- Heroes will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero Detail Modal -->
+        <div class="modal" id="heroModal">
+            <div class="modal-overlay" id="modalOverlay"></div>
+            <div class="modal-content" id="modalContent">
+                <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+                <!-- Hero details will be dynamically loaded -->
+            </div>
         </div>
-        
-        <div class="heroes-grid">
-            <div class="hero-card" onclick="window.location.href='captain-america.html'">
-                <img src="images/captainamerica.jpg" alt="Captain America">
-                <h3>Captain America</h3>
-                <p>America's World War II Super-Soldier. The First Avenger with enhanced speed, stamina, and unwavering moral compass.</p>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-tag">Who We Are</span>
+                    <h2 class="section-title">About New Era Web</h2>
+                </div>
+
+                <div class="about-content" data-aos="fade-up" data-aos-delay="100">
+                    <div class="about-text">
+                        <p class="lead">
+                            We are a new App Development Company based in East Pretoria, South Africa. Our passion lies in creating innovative digital solutions that not only satisfy our clients but also establish our brand as a trusted name in the industry.
+                        </p>
+                        <p>
+                            We are proud of the work we do because it doesn't only fulfill our professional aspirations but also makes our brand known to people who understand that we create these solutions for them.
+                        </p>
+                    </div>
+
+                    <div class="company-stats">
+                        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="stat-icon">📅</div>
+                            <div class="stat-number">2024</div>
+                            <div class="stat-label">Founded</div>
+                        </div>
+                        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="stat-icon">🚀</div>
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="stat-icon">😊</div>
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Happy Clients</div>
+                        </div>
+                        <div class="stat-card" data-aos="fade-up" data-aos-delay="500">
+                            <div class="stat-icon">⏰</div>
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="hero-card" onclick="window.location.href='black-widow.html'">
-                <img src="images/natasha.jfif" alt="Black Widow">
-                <h3>Black Widow</h3>
-                <p>Master spy and assassin with no superhuman abilities but ultimate human levels of strength, agility, and stamina.</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-tag">Get In Touch</span>
+                    <h2 class="section-title">Contact Us</h2>
+                    <p class="section-subtitle">
+                        Have a project in mind? Let's bring your ideas to life
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info" data-aos="fade-right">
+                        <div class="contact-card">
+                            <h3>Get in Touch</h3>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-details">
+                                    <h4>Address</h4>
+                                    <p>Old Pretoria Road 1227 Franco Dr.<br>East Pretoria, South Africa</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div class="contact-details">
+                                    <h4>Phone</h4>
+                                    <p>0667287685<br>0789923232</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">📧</div>
+                                <div class="contact-details">
+                                    <h4>Email</h4>
+                                    <p>NewEraWeb@gmail.com</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">🕐</div>
+                                <div class="contact-details">
+                                    <h4>Business Hours</h4>
+                                    <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" id="contactForm" data-aos="fade-left">
+                        <h3>Send us a Message</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="How can we help?" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell us about your project..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <span>Send Message</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </form>
+                </div>
             </div>
-            
-            <div class="hero-card" onclick="window.location.href='iron-man.html'">
-                <img src="images/tony.jpg" alt="Iron Man">
-                <h3>Iron Man</h3>
-                <p>Genius, billionaire, philanthropist. Tony Stark's high-tech armor makes him one of the most powerful heroes on Earth.</p>
-            </div>
-            
-            <div class="hero-card" onclick="window.location.href='thor.html'">
-                <img src="images/thor.jpg" alt="Thor">
-                <h3>Thor</h3>
-                <p>God of Thunder, Son of Odin. Commands lightning and possesses incredible strength as protector of Asgard.</p>
-            </div>
-            
-            <div class="hero-card" onclick="window.location.href='hawkeye.html'">
-                <img src="images/clint.jpeg" alt="Hawkeye">
-                <h3>Hawkeye</h3>
-                <p>World's greatest marksman with astonishing talents in precise marksmanship, fighting, and tactical prowess.</p>
-            </div>
-            
-            <div class="hero-card" onclick="window.location.href='hulk.html'">
-                <img src="images/hulk.jpg" alt="Hulk">
-                <h3>Hulk</h3>
-                <p>The strongest there is. Dr. Bruce Banner transforms into an unstoppable green giant powered by rage.</p>
-            </div>
-        </div>
+        </section>
     </main>
 
-    <script src="script.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 New Era Web. All rights reserved. Marvel characters © Marvel Entertainment.</p>
+            <p class="footer-note">This is a fan project showcasing web development skills.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
