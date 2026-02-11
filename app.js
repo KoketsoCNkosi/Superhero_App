@@ -60,6 +60,9 @@ class SuperheroApp {
             } else {
                 navbar.classList.remove('scrolled');
             }
+
+            // Update active link based on scroll position
+            this.updateActiveLink();
         });
 
         // Mobile menu toggle
@@ -68,41 +71,51 @@ class SuperheroApp {
             navLinks.classList.toggle('active');
         });
 
-        // Smooth scrolling and section switching
+        // Smooth scrolling
         links.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = link.getAttribute('href').substring(1);
-                this.showSection(targetId);
-                
-                // Update active link
-                links.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-                
-                // Close mobile menu
-                mobileMenu.classList.remove('active');
-                navLinks.classList.remove('active');
-                
-                // Smooth scroll to section
                 const targetSection = document.getElementById(targetId);
+                
                 if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                    // Smooth scroll to section
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Close mobile menu
+                    mobileMenu.classList.remove('active');
+                    navLinks.classList.remove('active');
                 }
             });
         });
     }
 
-    showSection(sectionId) {
-        // Hide all sections
-        document.querySelectorAll('.section, .hero-section').forEach(section => {
-            section.classList.remove('active-section');
-        });
+    updateActiveLink() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
         
-        // Show target section
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    showSection(sectionId) {
+        // This method is now just for compatibility
         const targetSection = document.getElementById(sectionId);
         if (targetSection) {
-            targetSection.classList.add('active-section');
-            this.currentSection = sectionId;
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
 
