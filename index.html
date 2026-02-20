@@ -1,234 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover Marvel's Mightiest Heroes - An interactive superhero database">
-    <meta name="theme-color" content="#ed1d24">
-    <title>Marvel Heroes - Earth's Mightiest Heroes</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avengers | New Era Web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <span class="theme-icon sun">☀️</span>
-        <span class="theme-icon moon">🌙</span>
-    </button>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <span class="marvel-logo">MARVEL</span>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#heroes" class="nav-link">Heroes</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <button class="mobile-menu" id="mobileMenu" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+  <div id="cursor"></div>
+
+  <div id="loader">
+    <div class="loader-inner">
+      <svg viewBox="0 0 80 80" class="loader-ring">
+        <circle cx="40" cy="40" r="34" />
+      </svg>
+      <span class="loader-label">ASSEMBLING</span>
+    </div>
+  </div>
+
+  <header id="navbar">
+    <div class="nav-inner">
+      <a class="logo" data-page="home" href="#">
+        <span class="logo-a">A</span><span class="logo-rest">VENGERS</span>
+      </a>
+      <nav>
+        <a class="nav-link active" data-page="home" href="#">Heroes</a>
+        <a class="nav-link" data-page="about" href="#">About</a>
+        <a class="nav-link" data-page="contact" href="#">Contact</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a class="mob-link" data-page="home" href="#">Heroes</a>
+      <a class="mob-link" data-page="about" href="#">About</a>
+      <a class="mob-link" data-page="contact" href="#">Contact</a>
+    </div>
+  </header>
+
+  <div id="app">
+
+    <section class="page active" id="page-home">
+      <div class="home-bg">
+        <div class="bg-grid"></div>
+        <div class="bg-glow glow-1"></div>
+        <div class="bg-glow glow-2"></div>
+      </div>
+      <div class="home-hero">
+        <p class="eyebrow">Earth's Mightiest Heroes</p>
+        <h1 class="hero-title">AVENGERS</h1>
+        <p class="hero-sub">Select a hero to explore their story</p>
+      </div>
+      <div class="heroes-grid" id="heroesGrid"></div>
+    </section>
+
+    <section class="page" id="page-detail">
+      <div class="detail-bg"><div class="detail-bg-art" id="detailBgArt"></div></div>
+      <div class="detail-wrap">
+        <button class="back-btn" id="backBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          All Heroes
+        </button>
+        <div class="detail-card" id="detailCard"></div>
+      </div>
+    </section>
+
+    <section class="page" id="page-about">
+      <div class="about-wrap">
+        <div class="page-header">
+          <p class="eyebrow">Who We Are</p>
+          <h2>New Era Web</h2>
         </div>
-    </nav>
-
-    <main id="main-content">
-        <!-- Home Section -->
-        <section id="home" class="hero-section">
-            <div class="hero-background">
-                <div class="hero-pattern"></div>
-            </div>
-            <div class="hero-content" data-aos="fade-up">
-                <h1 class="marvel-title">
-                    <span class="title-main">EARTH'S MIGHTIEST</span>
-                    <span class="title-sub">HEROES</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Discover the incredible stories, powers, and origins of Marvel's legendary Avengers
-                </p>
-                <div class="hero-cta">
-                    <a href="#heroes" class="btn btn-primary">
-                        <span>Explore Heroes</span>
-                        <span class="btn-icon">→</span>
-                    </a>
-                </div>
-            </div>
-            <div class="scroll-indicator">
-                <span>Scroll to discover</span>
-                <div class="scroll-arrow">↓</div>
-            </div>
-        </section>
-
-        <!-- Heroes Section -->
-        <section id="heroes" class="section heroes-section">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <span class="section-tag">The Avengers</span>
-                    <h2 class="section-title">Meet the Heroes</h2>
-                    <p class="section-subtitle">
-                        Click on any hero to learn more about their powers, origins, and legendary adventures
-                    </p>
-                </div>
-
-                <div class="heroes-grid" id="heroesGrid">
-                    <!-- Heroes will be dynamically loaded -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Hero Detail Modal -->
-        <div class="modal" id="heroModal">
-            <div class="modal-overlay" id="modalOverlay"></div>
-            <div class="modal-content" id="modalContent">
-                <button class="modal-close" id="modalClose" aria-label="Close">×</button>
-                <!-- Hero details will be dynamically loaded -->
-            </div>
+        <div class="about-body">
+          <p>We are a new App Development Company based in East of Pretoria, South Africa. Our passion lies in creating innovative digital solutions that not only satisfy our clients but also establish our brand as a trusted name in the industry.</p>
+          <p>We are proud of the work we do because it doesn't only fulfill our professional aspirations but also makes our brand known to people who understand that we create these solutions for them.</p>
         </div>
-
-        <!-- About Section -->
-        <section id="about" class="section about-section">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <span class="section-tag">Who We Are</span>
-                    <h2 class="section-title">About New Era Web</h2>
-                </div>
-
-                <div class="about-content" data-aos="fade-up" data-aos-delay="100">
-                    <div class="about-text">
-                        <p class="lead">
-                            We are a new App Development Company based in East Pretoria, South Africa. Our passion lies in creating innovative digital solutions that not only satisfy our clients but also establish our brand as a trusted name in the industry.
-                        </p>
-                        <p>
-                            We are proud of the work we do because it doesn't only fulfill our professional aspirations but also makes our brand known to people who understand that we create these solutions for them.
-                        </p>
-                    </div>
-
-                    <div class="company-stats">
-                        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-                            <div class="stat-icon">📅</div>
-                            <div class="stat-number">2024</div>
-                            <div class="stat-label">Founded</div>
-                        </div>
-                        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
-                            <div class="stat-icon">🚀</div>
-                            <div class="stat-number">100+</div>
-                            <div class="stat-label">Projects</div>
-                        </div>
-                        <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
-                            <div class="stat-icon">😊</div>
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Happy Clients</div>
-                        </div>
-                        <div class="stat-card" data-aos="fade-up" data-aos-delay="500">
-                            <div class="stat-icon">⏰</div>
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">Support</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section contact-section">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <span class="section-tag">Get In Touch</span>
-                    <h2 class="section-title">Contact Us</h2>
-                    <p class="section-subtitle">
-                        Have a project in mind? Let's bring your ideas to life
-                    </p>
-                </div>
-
-                <div class="contact-grid">
-                    <div class="contact-info" data-aos="fade-right">
-                        <div class="contact-card">
-                            <h3>Get in Touch</h3>
-                            
-                            <div class="contact-item">
-                                <div class="contact-icon">📍</div>
-                                <div class="contact-details">
-                                    <h4>Address</h4>
-                                    <p>Old Pretoria Road 1227 Franco Dr.<br>East Pretoria, South Africa</p>
-                                </div>
-                            </div>
-
-                            <div class="contact-item">
-                                <div class="contact-icon">📞</div>
-                                <div class="contact-details">
-                                    <h4>Phone</h4>
-                                    <p>0667287685<br>0789923232</p>
-                                </div>
-                            </div>
-
-                            <div class="contact-item">
-                                <div class="contact-icon">📧</div>
-                                <div class="contact-details">
-                                    <h4>Email</h4>
-                                    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2c62495b695e4d7b494e6c4b414d4540024f4341">[email&#160;protected]</a></p>
-                                </div>
-                            </div>
-
-                            <div class="contact-item">
-                                <div class="contact-icon">🕐</div>
-                                <div class="contact-details">
-                                    <h4>Business Hours</h4>
-                                    <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <form class="contact-form" id="contactForm" data-aos="fade-left">
-                        <h3>Send us a Message</h3>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Your Name</label>
-                                <input type="text" id="name" name="name" placeholder="John Doe" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Your Email</label>
-                                <input type="email" id="email" name="email" placeholder="john@example.com" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="How can we help?" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="6" placeholder="Tell us about your project..." required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <span>Send Message</span>
-                            <span class="btn-icon">→</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 New Era Web. All rights reserved. Marvel characters © Marvel Entertainment.</p>
-            <p class="footer-note">This is a fan project showcasing web development skills.</p>
+        <div class="stats-row">
+          <div class="stat-item" style="--i:0"><span class="stat-num">2024</span><span class="stat-label">Founded</span></div>
+          <div class="stat-item" style="--i:1"><span class="stat-num">100+</span><span class="stat-label">Projects</span></div>
+          <div class="stat-item" style="--i:2"><span class="stat-num">50+</span><span class="stat-label">Clients</span></div>
+          <div class="stat-item" style="--i:3"><span class="stat-num">24/7</span><span class="stat-label">Support</span></div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <!-- Toast Container -->
-    <div id="toastContainer" class="toast-container"></div>
+    <section class="page" id="page-contact">
+      <div class="contact-wrap">
+        <div class="page-header">
+          <p class="eyebrow">Get In Touch</p>
+          <h2>Contact Us</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info-block">
+            <div class="info-item"><span class="info-icon">📍</span><div><strong>Address</strong><p>Old Pretoria Road 1227 Franco Dr.<br>East Pretoria, South Africa</p></div></div>
+            <div class="info-item"><span class="info-icon">📞</span><div><strong>Phone</strong><p>0607846220<br>0789923232</p></div></div>
+            <div class="info-item"><span class="info-icon">📧</span><div><strong>Email</strong><p>NewEraWeb@gmail.com</p></div></div>
+            <div class="info-item"><span class="info-icon">🕐</span><div><strong>Hours</strong><p>Mon – Fri: 9:00 AM – 6:00 PM<br>Sat: 10:00 AM – 1:00 PM</p></div></div>
+          </div>
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="field"><label for="fname">Your Name</label><input type="text" id="fname" name="name" placeholder="Steve Rogers" required /></div>
+              <div class="field"><label for="femail">Email Address</label><input type="email" id="femail" name="email" placeholder="hero@avengers.com" required /></div>
+            </div>
+            <div class="field"><label for="fsubject">Subject</label><input type="text" id="fsubject" name="subject" placeholder="What's the mission?" required /></div>
+            <div class="field"><label for="fmessage">Message</label><textarea id="fmessage" name="message" rows="5" placeholder="Tell us everything…" required></textarea></div>
+            <button type="submit" class="submit-btn"><span class="btn-text">Send Message</span><span class="btn-icon">→</span></button>
+            <div class="form-toast" id="formToast"></div>
+          </form>
+        </div>
+      </div>
+    </section>
 
-    <!-- Scripts -->
-    <script src="data.js"></script>
-    <script src="app.js"></script>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
